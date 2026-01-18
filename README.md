@@ -25,18 +25,17 @@
 ## How to run
 ### 1) Install
 ```bash
-pip install -r requirements.txt
-
+pip install -r requirements.txt```
 
 ### 2) Setup env
-cp .env.example .env
-# заполнить API ключи
+```cp .env.example .env
+# заполнить API ключи```
 
  ### 3) Build index (once)
-python -m src.faiss_index --data train_data.csv
+```python -m src.faiss_index --data train_data.csv```
 
 ### 4) Generate submission
-python -m src.run --questions questions.csv --out submission.csv
+```python -m src.run --questions questions.csv --out submission.csv```
 
 
 ## Anti-hallucination
