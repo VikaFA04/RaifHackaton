@@ -31,7 +31,7 @@ pip install -r requirements.txt```
 ```cp .env.example .env
 # заполнить API ключи```
 
- ### 3) Build index (once)
+### 3) Build index (once)
 ```python -m src.faiss_index --data train_data.csv```
 
 ### 4) Generate submission
@@ -39,7 +39,6 @@ pip install -r requirements.txt```
 
 
 ## Anti-hallucination
-
 LLM получает только retrieved-контекст
 Если ответа нет в контексте — модель обязана сказать, что информации недостаточно
 Ответ должен быть кратким и прикладным (без “воды”)
