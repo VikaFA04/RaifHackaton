@@ -1,13 +1,27 @@
-**Solution overview (RAG)**
+# Finance QA Assistant (RAG) — RaifHackaton
 
-**Ingestion**: загружаю train_data.csv (350 статей в Markdown), очищаю/нормализую Markdown (заголовки/списки), режу на чанки фиксированного размера с overlap.
+LLM-ассистент для ответов на вопросы о банковских продуктах и финансовых терминах.
+Использует Retrieval-Augmented Generation (RAG) поверх базы знаний из `train_data.csv` (350 статей в Markdown).
 
-**Indexing**: строю эмбеддинги для чанков, сохраняю в векторный индекс (FAISS/Chroma/…).
+## Problem
+Клиенты задают вопросы по вкладам, кредитам, комиссиям, инвестициям и страхованию.
+Классические каналы поддержки (колл-центр/чат-боты) дорогие и масштабируются плохо.
+Ключевое требование: **корректность** ответов и контроль hallucinations.
 
-**Retrieval**: для входного вопроса считаю embedding, выбираю top-k релевантных чанков.
+## Data
+- `train_data.csv` — база знаний (350 статей, Markdown)
+- `questions.csv` — вопросы для генерации ответов
+- `baseline.py` — предоставленное стартовое решение
 
-**(Optional) Rerank**: переранжирую top-k более точной моделью/LLM-scoring (если использовала).
+## Solution overview (RAG)
+1. Ingestion: загрузка и очистка markdown-текста
+2. Chunking: нарезка документов на чанки с overlap
+3. Indexing: эмбеддинги чанков + векторный индекс
+4. Retrieval: top-k релевантных чанков по запросу
+5. Generation: ответ LLM строго по retrieved-контексту (anti-hallucination prompt)
+6. Output: `submission.csv` с ответами на `questions.csv`
 
-**Generation**: формирую ответ LLM строго на основе найденного контекста (инструкции: “не выдумывать, если в контексте нет — сказать, что информации недостаточно”).
-
-**Output**: генерирую submission.csv с ответами на вопросы из questions.csv.
+## How to run
+1) Install:
+```bash
+pip install -r requirements.txt
