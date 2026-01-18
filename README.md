@@ -1,4 +1,4 @@
-###**Solution overview (RAG)**
+**Solution overview (RAG)**
 
 **Ingestion**: загружаю train_data.csv (350 статей в Markdown), очищаю/нормализую Markdown (заголовки/списки), режу на чанки фиксированного размера с overlap.
 
